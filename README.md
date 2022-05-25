@@ -13,6 +13,8 @@ Inspect final marker haplotypes. Identify which haplotypes might be redundant/ch
 * `tmp.snps` - FASTA with segregating SNPs in marker haplotypes
 
 
+[example.jpg](https://github.com/juuzia/HapCheck/blob/main/example.png)
+
 # Set-up
 ## Clone repository
 ```

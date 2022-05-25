@@ -4,6 +4,7 @@ import subprocess
 import tempfile
 import pprint
 import argparse
+import os
 
 parser = argparse.ArgumentParser(description='Take input arguments')
 parser.add_argument('--dir', metavar = 'd', type=str, help='Working directory for analysis outputs', default='.')
@@ -46,14 +47,15 @@ with open(tfile, "w") as tempfile:
         tempfile.write(element + "\n")
      
 # Run seqkit
-log_seqkit = subprocess.call(["seqkit", "grep", "-f" , tfile, hap_fasta, "-o", args.dir + "temp.fasta"])
+ffile = os.path.join(args.dir, "tmp.fasta")
+log_seqkit = subprocess.call(["seqkit", "grep", "-f" , tfile, hap_fasta, "-o", ffile])
 
 # Run snp-sites
-log_snps = subprocess.call(["snp-sites", "-m" , "-o", args.dir + "temp.snps", args.dir + "temp.fasta"])
+sfile = os.path.join(args.dir, "tmp.snps")
+log_snps = subprocess.call(["snp-sites", "-m", "-o", sfile, ffile])
 
-fastafile = args.dir + "temp.fasta"
 
-input_file = open(fastafile)
+input_file = open(sfile)
 my_dict = SeqIO.to_dict(SeqIO.parse(input_file, "fasta"))
 
 # Check overlaps
