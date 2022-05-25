@@ -13,6 +13,7 @@ Inspect final marker haplotypes. Identify which haplotypes might be redundant/ch
 * `tmp.snps` - FASTA with segregating SNPs in marker haplotypes
 
 
+![example](example.jpg)
 
 # Set-up
 ## Clone repository
